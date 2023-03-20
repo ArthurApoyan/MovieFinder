@@ -1,0 +1,16 @@
+.logoLink{
+    width: 9%;
+    height: 60px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.logo img{
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}

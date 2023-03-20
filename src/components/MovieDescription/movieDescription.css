@@ -1,0 +1,45 @@
+.movieDescriptionContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 6% 0 0 0;
+}
+.movieDescription{
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 2%;
+    border: 5px solid #02024b;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 10px;
+}
+.movieDescription h2, h3, h4, p{
+    color: white;
+}
+.movieDescriptionPoster{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.movieDescriptionPoster > img{
+    width: 350px;
+    height: 500px;
+    box-shadow: 1px 1px 20px 5px;
+}
+.movieInfo{
+    width: 40%;
+}
+.movieInfo > h2{
+    font-size: 35px;
+    color: orangered;
+}
+.movieInfo > p{
+    font-size: 18px;
+}
+.movieInfo span{
+    color: #058d05;
+}
+.movieInfo > p > span{
+    font-size: 20px;
+    font-weight: bold;
+}

@@ -1,0 +1,10 @@
+.goBack{
+    margin-right: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+}
+.goBack:hover{
+    cursor: pointer;
+    color: #3c3b3b;
+}

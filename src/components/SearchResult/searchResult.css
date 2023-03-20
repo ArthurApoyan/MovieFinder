@@ -1,0 +1,22 @@
+.searchResult > h1{
+    margin: 0;
+    padding-top: 6%;
+    padding-left: 7%;
+    color: white;
+}
+.foundMovies{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 3%;
+    padding-top: 3%;
+    padding-left: 6%;
+}
+.foundMovieCard{
+    width: 13%;
+}
+.foundMovieCardLink > img{
+    width: 200px;
+    height: 300px;
+    box-shadow: 1px 1px 20px 5px;
+}

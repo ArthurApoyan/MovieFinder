@@ -1,0 +1,27 @@
+.searchPanel{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.searchPanel > input{
+    border-radius: 10px;
+    padding: 2% 5%;
+    width: 90%;
+    font-size: 16px;
+}
+.searchPanel > input:focus{
+    outline: none;
+}
+.searchPanel button{
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+}
+.searchPanel button:hover{
+    color: #a9a7a7;
+    cursor: pointer;
+    box-shadow: 0 0 10px 5px;
+}

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import {movieRequest} from "../../api/hooks/hooks";
 import {MOVIE_DETAILS_URL, POSTER_URL} from "../../api/url/url";
 import {Link} from "react-router-dom";
@@ -12,6 +12,7 @@ const MovieDescription = () => {
     const [movieDetails, setMovieDetails] = useState({})
     const {getMovieDetails} = movieRequest()
     const {id} = useParams()
+    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -43,6 +44,7 @@ const MovieDescription = () => {
                     <h4><span>Movie homepage : </span> <Link style={{color: "white"}} target="_blank" to={movieDetails?.homepage}>{movieDetails?.homepage}</Link></h4>
                     <p><span>Overview : </span>{movieDetails.overview}</p>
                 </div>
+                <button onClick={() => {navigate(-1)}}>x</button>
             </div>
         </div>
     );

@@ -5,16 +5,32 @@
     padding: 6% 0 0 0;
 }
 .movieDescription{
-    width: 80%;
+    width: 70%;
     display: flex;
     justify-content: space-evenly;
-    padding-top: 2%;
+    padding: 2% 3% 0 4%;
     border: 5px solid #02024b;
     border-radius: 20px;
     box-shadow: 0 0 20px 10px;
 }
 .movieDescription h2, h3, h4, p{
     color: white;
+}
+.movieDescription > button{
+    position: absolute;
+    left: 83.5%;
+    top: 14%;
+    width: 5%;
+    height: 7%;
+    font-size: 45px;
+    border: none;
+    color: gray;
+    background-color: transparent;
+}
+.movieDescription > button:hover{
+    color: white;
+    cursor: pointer;
+    border: none;
 }
 .movieDescriptionPoster{
     display: flex;

@@ -51,6 +51,8 @@
 }
 .movieInfo > p{
     font-size: 18px;
+    height: 160px;
+    overflow: auto;
 }
 .movieInfo span{
     color: #058d05;
@@ -58,4 +60,17 @@
 .movieInfo > p > span{
     font-size: 20px;
     font-weight: bold;
+}
+.trailerLink{
+    color: orange;
+    text-decoration: none;
+    position: absolute;
+    left: 55%;
+    bottom: 9%;
+    font-size: 30px;
+    border-radius: 10px;
+    padding: 0 5%;
+}
+.trailerLink:hover{
+    box-shadow: 0 0 5px 5px;
 }

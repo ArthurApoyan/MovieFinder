@@ -7,6 +7,7 @@ import TopRatedMovies from "../../pages/TopRatedMovies/TopRatedMovies";
 import UpcomingMovies from "../../pages/UpcomingMovies/UpcomingMovies";
 import MovieDescription from "../MovieDescription/MovieDescription";
 import SearchResult from "../SearchResult/SearchResult";
+import VideoTrailer from "../VideoTrailer/VideoTrailer";
 
 const AppRouter = () => {
     return (
@@ -14,8 +15,9 @@ const AppRouter = () => {
             <Route path="/" element={<Layout/>}>
                 <Route index element={<HomePage/>}/>
                 <Route path="/:id" element={<MovieDescription/>}/>
+                <Route path="/:id/:movieTitle" element={<VideoTrailer/>}/>
                 <Route path="popular/" element={<PopularMovies/>}>
-                    <Route path=":id" element={<MovieDescription/>}/>
+                    <Route path=":id/" element={<MovieDescription/>}/>
                 </Route>
                 <Route path="topRated" element={<TopRatedMovies/>}/>
                 <Route path="topRated/:id" element={<MovieDescription/>}/>

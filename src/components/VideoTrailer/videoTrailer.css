@@ -1,0 +1,17 @@
+.playerContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7%;
+}
+.playerDiv{
+    width: 1000px;
+    height: 600px;
+    border: 5px solid #02024b;
+    box-shadow: 0 0 20px 10px;
+}
+.player{
+    width: 1000px;
+    height: 600px;
+}

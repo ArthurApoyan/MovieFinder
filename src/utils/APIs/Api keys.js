@@ -1,0 +1,1 @@
+export const YTAPIkey = "AIzaSyCcBpFGXelJY2mFAIDu44j3_B-7BdFl6VQ";

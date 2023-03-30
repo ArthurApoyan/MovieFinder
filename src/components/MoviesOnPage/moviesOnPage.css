@@ -1,0 +1,56 @@
+.allMoviesOnPopularPage{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    gap: 3%;
+    padding: 0 5%;
+    margin-bottom: 50px;
+    margin-top: 5%;
+}
+.allMoviesOnOtherPages{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    gap: 3%;
+    padding: 0 5%;
+    margin-bottom: 50px;
+}
+.movieOnPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 20%;
+    height: 530px;
+    margin: 3% 0;
+}
+.movieOnPage > h3{
+    text-align: center;
+    color: white;
+}
+@media(max-width: 1500px){
+    .movieOnPage{
+        width: 25%;
+        height: 530px;
+    }
+}
+@media(max-width: 1100px){
+    .allMoviesOnPage{
+        padding-top: 5%;
+    }
+    .movieOnPage{
+        width: 35%;
+        height: 530px;
+    }
+}
+@media(max-width: 800px){
+    .allMoviesOnPage{
+        padding-top: 12%;
+    }
+    .movieOnPage{
+        width: 90%;
+        height: 530px;
+    }
+}

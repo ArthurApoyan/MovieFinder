@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import {movieRequest} from "../../api/hooks/hooks";
-import {Pagination} from "@mui/material";
-import Loading from "../../components/Loading/Loading";
-import {POPULAR_MOVIE_URL, POSTER_URL} from "../../api/url/url";
-import {Link} from "react-router-dom";
 import {Outlet} from "react-router";
+import {movieRequest} from "../../api/hooks/hooks";
+import {POPULAR_MOVIE_URL} from "../../api/url/url";
 
+import Loading from "../../components/Loading/Loading";
+import MoviesOnPage from "../../components/MoviesOnPage/MoviesOnPage";
+import Paginator from "../../components/Paginator/Paginator";
 
 import "./popularMovies.css";
-
 
 const PopularMovies = () => {
 
@@ -16,7 +15,7 @@ const PopularMovies = () => {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1)
 
-    const {popularMovieRequest} = movieRequest()
+    const {movieRequestGet} = movieRequest()
 
 
     const handleChange = (event, value) => {
@@ -29,38 +28,28 @@ const PopularMovies = () => {
 
     useEffect(() => {
         const getPopular = async () => {
-
             setLoading(true)
 
-            const result = await popularMovieRequest((POPULAR_MOVIE_URL + page))
+            const result = await movieRequestGet((POPULAR_MOVIE_URL + page))
             setPopularMovies(result)
 
             setLoading(false)
         }
+
         getPopular()
+
     }, [page])
 
 
     return (
-        <div className="popularMoviePage">
+        <div className="popularMoviesPage">
             <div style={{marginTop: "-5%"}}><Outlet/></div>
-            <div className="popularMoviesContainer">
-                {
-                    popularMovies?.results?.map((item) => {
-                        return (
-                            <div key={item.id} className="popularMovie">
-                                <Link className="movieCardLink" to={`${item.id}`}><img className="popularMoviePoster" src={POSTER_URL + item?.poster_path} alt="topRatedMovie"/></Link>
-                                <Link className="movieCardLink" to={`${item.id}`}><h3>{item?.title}</h3></Link>
-                                <h3>Rate: {item?.vote_average}</h3>
-                            </div>
-                        )
-                    })
-                }
-            </div>
+
+            <MoviesOnPage className= "allMoviesOnPopularPage" allMovies={popularMovies}/>
+
             {loading && <Loading/>}
-            <div className="pagination">
-                <Pagination count={3} color="primary" size="large" onChange={handleChange}/>
-            </div>
+
+            <Paginator count={3} setPage={setPage}/>
         </div>
     );
 };

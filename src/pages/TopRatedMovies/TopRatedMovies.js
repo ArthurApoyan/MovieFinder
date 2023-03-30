@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {movieRequest} from "../../api/hooks/hooks";
-import {POSTER_URL, TOP_RATED_MOVIE_URL} from "../../api/url/url";
+import {TOP_RATED_MOVIE_URL} from "../../api/url/url";
+
+import MoviesOnPage from "../../components/MoviesOnPage/MoviesOnPage";
+import Paginator from "../../components/Paginator/Paginator";
 import Loading from "../../components/Loading/Loading";
-import {Pagination} from "@mui/material";
-import {Link} from "react-router-dom";
+
+import "./topRatedMovies.css";
 
 const TopRatedMovies = () => {
 
@@ -11,11 +14,7 @@ const TopRatedMovies = () => {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1)
 
-    const {topRatedMovieRequest} = movieRequest()
-
-    const handleChange = (event, value) => {
-        setPage(value)
-    }
+    const {movieRequestGet} = movieRequest()
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -26,7 +25,7 @@ const TopRatedMovies = () => {
 
             setLoading(true)
 
-            const result = await topRatedMovieRequest(TOP_RATED_MOVIE_URL + page)
+            const result = await movieRequestGet(TOP_RATED_MOVIE_URL + page)
             setTopRated(result)
 
             setLoading(false)
@@ -37,24 +36,12 @@ const TopRatedMovies = () => {
 
 
     return (
-        <div className="popularMoviePage">
+        <div className="topRatedMoviesPage">
             {loading && <Loading/>}
-            <div className="popularMoviesContainer">
-                {
-                    topRated?.results?.map((item) => {
-                        return (
-                            <div key={item.id} className="popularMovie">
-                                <Link className="movieCardLink" to={`${item.id}`}><img className="popularMoviePoster" src={POSTER_URL + item?.poster_path} alt="topRatedMovie"/></Link>
-                                <Link className="movieCardLink" to={`${item.id}`}><h3>{item?.title}</h3></Link>
-                                <h3>Rate: {item?.vote_average}</h3>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-            <div className="pagination">
-                <Pagination count={10} color="primary" size="large" onChange={handleChange}/>
-            </div>
+
+            <MoviesOnPage className="allMoviesOnOtherPages" allMovies={topRated}/>
+
+            <Paginator count={10} setPage={setPage}/>
         </div>
     );
 };

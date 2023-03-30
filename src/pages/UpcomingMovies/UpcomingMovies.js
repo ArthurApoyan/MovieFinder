@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {movieRequest} from "../../api/hooks/hooks";
-import {POSTER_URL, UPCOMING_MOVIE_URL} from "../../api/url/url";
+import {UPCOMING_MOVIE_URL} from "../../api/url/url";
+
+import MoviesOnPage from "../../components/MoviesOnPage/MoviesOnPage";
+import Paginator from "../../components/Paginator/Paginator";
 import Loading from "../../components/Loading/Loading";
-import {Pagination} from "@mui/material";
-import {Link} from "react-router-dom";
+
+import "./upcomingMovies.css";
 
 const UpcomingMovies = () => {
 
@@ -11,11 +14,7 @@ const UpcomingMovies = () => {
     const [page, setPage] = useState(1)
     const [loading, setLoading] = useState(false)
 
-    const {upcomingMovieRequest} = movieRequest()
-
-    const handleChange = (event, value) => {
-        setPage(value)
-    }
+    const {movieRequestGet} = movieRequest()
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -26,7 +25,7 @@ const UpcomingMovies = () => {
 
             setLoading(true)
 
-            const result = await upcomingMovieRequest(UPCOMING_MOVIE_URL + page)
+            const result = await movieRequestGet(UPCOMING_MOVIE_URL + page)
             setUpcoming(result)
 
             setLoading(false)
@@ -36,27 +35,13 @@ const UpcomingMovies = () => {
         getUpcoming()
     }, [page])
 
-    console.log(upcoming)
-
     return (
-        <div className="popularMoviePage">
+        <div className="upcomingMoviesPage">
             {loading && <Loading/>}
-            <div className="popularMoviesContainer">
-                {
-                    upcoming?.results?.map((item) => {
-                        return (
-                            <div key={item.id} className="popularMovie">
-                                <Link className="movieCardLink" to={`${item.id}`}><img className="popularMoviePoster" src={POSTER_URL + item?.poster_path} alt="topRatedMovie"/></Link>
-                                <Link className="movieCardLink" to={`${item.id}`}><h3>{item?.title}</h3></Link>
-                                <h3>Release Date : {item?.release_date}</h3>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-            <div className="pagination">
-                <Pagination count={4} color="primary" size="large" onChange={handleChange}/>
-            </div>
+
+            <MoviesOnPage className="allMoviesOnOtherPages" allMovies={upcoming}/>
+
+            <Paginator count={4} setPage={setPage}/>
         </div>
     );
 };

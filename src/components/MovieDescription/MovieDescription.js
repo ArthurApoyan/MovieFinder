@@ -10,9 +10,9 @@ import "./movieDescription.css";
 const MovieDescription = () => {
 
     const [movieDetails, setMovieDetails] = useState({})
-    const {getMovieDetails} = movieRequest()
-    const {id} = useParams()
+    const {movieRequestGet} = movieRequest()
     const navigate = useNavigate();
+    const {id} = useParams()
 
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -20,7 +20,7 @@ const MovieDescription = () => {
 
     useEffect(() => {
         const getDetails = async () => {
-            const result = await getMovieDetails(MOVIE_DETAILS_URL(id))
+            const result = await movieRequestGet(MOVIE_DETAILS_URL(id))
             setMovieDetails(result)
         }
 
@@ -30,7 +30,6 @@ const MovieDescription = () => {
     console.log(useParams())
 
     return (
-        <div>
             <div className="movieDescriptionContainer">
                 <div className="movieDescription">
                     <div className="movieDescriptionPoster">
@@ -44,12 +43,11 @@ const MovieDescription = () => {
                         <h3><span>Original Language : </span> {movieDetails?.original_language?.toUpperCase()}</h3>
                         <h4><span>Movie homepage : </span> <Link style={{color: "white"}} target="_blank" to={movieDetails?.homepage}>{movieDetails?.homepage}</Link></h4>
                         <p><span>Overview : </span>{movieDetails.overview}</p>
+                        <Link className="trailerLink" to={`/${movieDetails?.id}/${movieDetails?.title}`}>Watch Movie Trailer</Link>
                     </div>
                     <button onClick={() => {navigate(-1)}}>x</button>
                 </div>
             </div>
-            <Link className="trailerLink" to={`/${movieDetails?.id}/${movieDetails?.title}`}>Watch Movie Trailer</Link>
-        </div>
     );
 };
 

@@ -1,0 +1,30 @@
+.homePageSection{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 500px;
+    margin-bottom: 5%;
+    border: 5px solid #02024b;
+    border-radius: 20px;
+    box-shadow: 0 0 20px 10px;
+}
+.homePageSectionTitle, .homePageSectionContent{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.homePageSectionTitle > h2{
+    font-size: 28px;
+    padding-left: 20px;
+    margin: 0;
+    color: white;
+}
+.homePageSectionTitleLink{
+    text-decoration: none;
+    width: 10%;
+    color: white;
+}
+.homePageSectionTitleLink:hover{
+    color: #1d6969;
+}

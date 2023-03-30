@@ -1,0 +1,32 @@
+.movieCardHomePage{
+    width: 13em;
+    height: 24em;
+    margin: 10px 33px;
+}
+.movieCardOnPage{
+    width: 16em;
+    height: 24em;
+    margin: 10px 33px;
+}
+.movieCardLink{
+    text-decoration: none;
+    color: black;
+}
+.movieCardLink:hover{
+    color: blue;
+}
+.movieCardLink:focus{
+    color: aqua;
+}
+.movieCardLink > h3{
+    margin: 20px;
+    color: white;
+    text-align: center;
+}
+.movieCardLink > h3:hover{
+    color: #1d6969;
+}
+.movieCardPoster{
+    width: 100%;
+    box-shadow: 1px 1px 20px 5px;
+}

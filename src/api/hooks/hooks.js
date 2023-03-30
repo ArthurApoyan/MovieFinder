@@ -1,20 +1,6 @@
 export const movieRequest = () => {
-    const popularMovieRequest = async (url) => {
-        const response = await fetch(url)
-        return response.json()
-    }
 
-    const topRatedMovieRequest = async (url) => {
-        const response = await fetch(url)
-        return response.json()
-    }
-
-    const upcomingMovieRequest = async (url) => {
-        const response = await fetch(url)
-        return response.json()
-    }
-
-    const getMovieDetails = async (url) => {
+    const movieRequestGet = async (url) => {
         const response = await fetch(url)
         return response.json()
     }
@@ -25,10 +11,7 @@ export const movieRequest = () => {
     }
 
     return {
-        popularMovieRequest,
-        topRatedMovieRequest,
-        upcomingMovieRequest,
-        getMovieDetails,
+        movieRequestGet,
         searchMovie
     }
 }

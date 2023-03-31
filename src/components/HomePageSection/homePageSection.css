@@ -1,9 +1,10 @@
 .homePageSection{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 85%;
     height: 500px;
     margin-bottom: 5%;
+    padding: 0 2% 10% 2%;
     border: 5px solid #02024b;
     border-radius: 20px;
     box-shadow: 0 0 20px 10px;
@@ -13,6 +14,9 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+.homePageSectionTitle{
+    margin-bottom: 2%;
 }
 .homePageSectionTitle > h2{
     font-size: 28px;
@@ -27,4 +31,19 @@
 }
 .homePageSectionTitleLink:hover{
     color: #1d6969;
+}
+.homePageSectionContent > button{
+    background-color: transparent;
+    color: white;
+    font-size: 80px;
+    border: none;
+    text-shadow: 4px 1px #121111;
+}
+.homePageSectionContent > button:hover{
+    cursor: pointer;
+    color: #1d6969;
+}
+.homePageSectionContent > button:disabled{
+    cursor: not-allowed;
+    color: #807e7e;
 }

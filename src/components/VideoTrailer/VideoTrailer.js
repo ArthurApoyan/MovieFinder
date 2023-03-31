@@ -13,7 +13,7 @@ const VideoTrailer = () => {
     const {movieTitle} = useParams()
 
     useEffect(() => {
-        YTSearch({key: YTAPIkey, term: movieTitle}, (videos) => {
+        YTSearch({key: YTAPIkey, term: movieTitle + "Official Trailer"}, (videos) => {
             setVideos(videos)
         })
     }, [])

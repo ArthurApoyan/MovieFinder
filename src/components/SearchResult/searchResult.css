@@ -1,11 +1,13 @@
 .searchResult{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     padding-bottom: 5%;
 }
 .searchResult > h1{
     margin: 0;
     padding-top: 6%;
-    padding-left: 7%;
     color: white;
 }
 .foundMovies{

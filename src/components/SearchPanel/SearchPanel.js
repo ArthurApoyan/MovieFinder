@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
-
-
-import "./searchPanel.css";
 import {useNavigate} from "react-router";
 
+import "./searchPanel.css";
 
 const SearchPanel = () => {
 
@@ -16,15 +13,11 @@ const SearchPanel = () => {
 
     return (
         <div className="searchPanel">
-            <input type="text" onChange={(e) => {
-                getInputValue(e)
-            }} placeholder="Movie Name" value={inputValue}/>
+            <input type="text" onChange={getInputValue} placeholder="Movie Name" value={inputValue}/>
             <button onClick={() => {
                 navigate(`searchResult/${inputValue}`)
                 setInputValue("")
-            }
-            }>Search
-            </button>
+            }}>Search</button>
         </div>
     );
 };

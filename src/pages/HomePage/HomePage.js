@@ -16,35 +16,31 @@ const HomePage = () => {
 
     const {movieRequestGet} = movieRequest()
 
+    const getPopular = async () => {
+
+        setLoading(true)
+
+        const result = await movieRequestGet(POPULAR_MOVIE_URL + 1)
+        setHomePagePopular(result)
+
+        setLoading(false)
+    }
+
+    const getTopRated = async () => {
+        const result = await movieRequestGet(TOP_RATED_MOVIE_URL + 1)
+        setHomePageTopRated(result)
+    }
+
+    const getUpcoming = async () => {
+        const result = await movieRequestGet(UPCOMING_MOVIE_URL + 1)
+        setHomePageUpcoming(result)
+    }
 
     useEffect(() => {
-        const getPopular = async () => {
-
-            setLoading(true)
-
-            const result = await movieRequestGet(POPULAR_MOVIE_URL + 1)
-            setHomePagePopular(result)
-
-            setLoading(false)
-        }
-
         getPopular()
-
-        const getTopRated = async () => {
-            const result = await movieRequestGet(TOP_RATED_MOVIE_URL + 1)
-            setHomePageTopRated(result)
-        }
-
         getTopRated()
-
-        const getUpcoming = async () => {
-            const result = await movieRequestGet(UPCOMING_MOVIE_URL + 1)
-            setHomePageUpcoming(result)
-        }
-
         getUpcoming()
     }, [])
-
 
     return (
         <div className="homePage">

@@ -10,6 +10,7 @@ const NavMenu = () => {
                 <li><NavLink className="navMenuLink" to="/popular">Popular</NavLink></li>
                 <li><NavLink className="navMenuLink" to="/topRated">Top Rated</NavLink></li>
                 <li><NavLink className="navMenuLink" to="/upcoming">Upcoming</NavLink></li>
+                <li><NavLink className="navMenuLink" to="/trending">Trending</NavLink></li>
            </ul>
         </div>
     );

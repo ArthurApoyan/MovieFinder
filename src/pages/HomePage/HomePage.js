@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {movieRequest} from "../../api/hooks/hooks";
-import {POPULAR_MOVIE_URL, TOP_RATED_MOVIE_URL, UPCOMING_MOVIE_URL} from "../../api/url/url";
+import {POPULAR_MOVIE_URL, TOP_RATED_MOVIE_URL, TRENDING_MOVIES_URL, UPCOMING_MOVIE_URL} from "../../api/url/url";
 
 import HomePageSection from "../../components/HomePageSection/HomePageSection";
 import Loading from "../../components/Loading/Loading";
@@ -12,7 +12,8 @@ const HomePage = () => {
     const [homePageContent, setHomePageContent] = useState({
         popular: {},
         topRated: {},
-        upcoming: {}
+        upcoming: {},
+        trending: {}
     })
     const [loading, setLoading] = useState(false)
     const {movieRequestGet} = movieRequest()
@@ -37,10 +38,16 @@ const HomePage = () => {
         setHomePageContent((prevState) => ({...prevState, upcoming: result}))
     }
 
+    const getTrending = async () => {
+        const result = await movieRequestGet(TRENDING_MOVIES_URL + 1)
+        setHomePageContent((prevState) => ({...prevState, trending: result}))
+    }
+
     useEffect(() => {
         getPopular()
         getTopRated()
         getUpcoming()
+        getTrending()
     }, [])
 
     return (
@@ -49,6 +56,7 @@ const HomePage = () => {
             <HomePageSection title="Popular Movies" moviesCategory={homePageContent.popular} link="/popular"/>
             <HomePageSection title="Top Rated Movies" moviesCategory={homePageContent.topRated} link="/topRated"/>
             <HomePageSection title="Upcoming Movies" moviesCategory={homePageContent.upcoming} link="/upcoming"/>
+            <HomePageSection title="Trending Movies" moviesCategory={homePageContent.upcoming} link="/upcoming"/>
         </div>
     );
 };

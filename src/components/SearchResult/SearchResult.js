@@ -11,12 +11,12 @@ const SearchResult = () => {
 
     const [searchResult, setSearchResult] = useState({})
     const [page, setPage] = useState(1)
-    const {searchMovie} = movieRequest()
+    const {movieRequestGet} = movieRequest()
     const {search} = useParams()
 
     useEffect(() => {
         const searchRequest = async  () => {
-            const result = await searchMovie(SEARCH_URL(search, page))
+            const result = await movieRequestGet(SEARCH_URL(search, page))
             setSearchResult(result)
         }
 

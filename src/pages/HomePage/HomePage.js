@@ -9,11 +9,12 @@ import "./homePage.css";
 
 const HomePage = () => {
 
-    const [homePagePopular, setHomePagePopular] = useState({})
-    const [homePageTopRated, setHomePageTopRated] = useState({})
-    const [homePageUpcoming, setHomePageUpcoming] = useState({})
+    const [homePageContent, setHomePageContent] = useState({
+        popular: {},
+        topRated: {},
+        upcoming: {}
+    })
     const [loading, setLoading] = useState(false)
-
     const {movieRequestGet} = movieRequest()
 
     const getPopular = async () => {
@@ -21,19 +22,19 @@ const HomePage = () => {
         setLoading(true)
 
         const result = await movieRequestGet(POPULAR_MOVIE_URL + 1)
-        setHomePagePopular(result)
+        setHomePageContent((prevState) => ({...prevState, popular: result}))
 
         setLoading(false)
     }
 
     const getTopRated = async () => {
         const result = await movieRequestGet(TOP_RATED_MOVIE_URL + 1)
-        setHomePageTopRated(result)
+        setHomePageContent((prevState) => ({...prevState, topRated: result}))
     }
 
     const getUpcoming = async () => {
         const result = await movieRequestGet(UPCOMING_MOVIE_URL + 1)
-        setHomePageUpcoming(result)
+        setHomePageContent((prevState) => ({...prevState, upcoming: result}))
     }
 
     useEffect(() => {
@@ -45,9 +46,9 @@ const HomePage = () => {
     return (
         <div className="homePage">
             {loading && <Loading/>}
-            <HomePageSection title="Popular Movies" moviesCategory={homePagePopular} link="/popular"/>
-            <HomePageSection title="Top Rated Movies" moviesCategory={homePageTopRated} link="/topRated"/>
-            <HomePageSection title="Upcoming Movies" moviesCategory={homePageUpcoming} link="/upcoming"/>
+            <HomePageSection title="Popular Movies" moviesCategory={homePageContent.popular} link="/popular"/>
+            <HomePageSection title="Top Rated Movies" moviesCategory={homePageContent.topRated} link="/topRated"/>
+            <HomePageSection title="Upcoming Movies" moviesCategory={homePageContent.upcoming} link="/upcoming"/>
         </div>
     );
 };

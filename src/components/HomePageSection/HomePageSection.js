@@ -8,7 +8,6 @@ import "./homePageSection.css";
 const HomePageSection = ({title, moviesCategory, link}) => {
 
     const [showMovies, setShowMovies] = useState([0, 1, 2])
-    const [count, setCount] = useState(0)
 
     const showNextMovie = () => {
         showMovies.shift()
@@ -26,28 +25,6 @@ const HomePageSection = ({title, moviesCategory, link}) => {
 
     const filteredResults = moviesCategory?.results?.filter((item, index) => index < 10)
     const showedMovies = filteredResults?.filter((item, index) => showMovies.includes(index))
-
-    // const nextMovieInterval = setInterval(() => {
-    //     setCount(count + 1)
-    //     showNextMovie()
-    // }, 5000)
-    //
-    // if(count === 7){
-    //     clearInterval(nextMovieInterval)
-    // }
-    //
-    // const prevMovieInterval = setInterval(() => {
-    //     showNextMovie()
-    //     setCount(count + 1)
-    // }, 5000)
-    //
-    // if(count === 0){
-    // setMoviesChangeInterval(nextMovieInterval)
-    // }else if(count === 7){
-    // setMoviesChangeInterval(prevMovieInterval)
-    // }
-
-    console.log("render")
 
     return (
         <div className="homePageSection">

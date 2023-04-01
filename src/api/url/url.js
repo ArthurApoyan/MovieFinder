@@ -6,10 +6,6 @@ export const UPCOMING_MOVIE_URL = "https://api.themoviedb.org/3/movie/upcoming?a
 
 export const POSTER_URL = "https://image.tmdb.org/t/p/original/";
 
-export const RATE_MOVIE_URL = (id) => {
-    return `https://api.themoviedb.org/3/movie/${id}/rating?api_key=eeadb5c738acc57bdc5851ce777d00bb`
-};
-
 export const MOVIE_DETAILS_URL = (id) => {
     return `https://api.themoviedb.org/3/movie/${id}?api_key=eeadb5c738acc57bdc5851ce777d00bb&language=en-US`
 };

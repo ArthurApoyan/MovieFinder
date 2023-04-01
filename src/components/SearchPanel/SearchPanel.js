@@ -11,13 +11,22 @@ const SearchPanel = () => {
         setInputValue(e.target.value)
     }
 
+    const handleClick = () => {
+        navigate(`searchResult/${inputValue}`)
+        setInputValue("")
+    }
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            navigate(`searchResult/${inputValue}`)
+            setInputValue("")
+        }
+    };
+
     return (
         <div className="searchPanel">
-            <input type="text" onChange={getInputValue} placeholder="Movie Name" value={inputValue}/>
-            <button onClick={() => {
-                navigate(`searchResult/${inputValue}`)
-                setInputValue("")
-            }}>Search</button>
+            <input type="text" onChange={getInputValue} onKeyDown={handleKeyDown} placeholder="Movie Name" value={inputValue}/>
+            <button onClick={handleClick}>Search</button>
         </div>
     );
 };

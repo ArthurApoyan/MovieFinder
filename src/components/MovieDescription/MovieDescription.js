@@ -1,30 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {useNavigate, useParams} from "react-router";
-import {movieRequest} from "../../api/hooks/hooks";
-import {MOVIE_DETAILS_URL, POSTER_URL} from "../../api/url/url";
+import {POSTER_URL} from "../../api/url/url";
 import {Link} from "react-router-dom";
-
+import {useDispatch, useSelector} from "react-redux";
+import {fetchMovieDescription} from "../../store/slices/movieDescription/movieDescriptionApi";
+import {selectMovieDescription} from "../../store/slices/movieDescription/MovieDescriptionSlice";
 
 import "./movieDescription.css";
 
 const MovieDescription = () => {
 
-    const [movieDetails, setMovieDetails] = useState({})
-    const {movieRequestGet} = movieRequest()
+    const dispatch = useDispatch()
+    const movieDetails = useSelector(selectMovieDescription)
     const navigate = useNavigate();
     const {id} = useParams()
 
     useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [id])
-
-    useEffect(() => {
-        const getDetails = async () => {
-            const result = await movieRequestGet(MOVIE_DETAILS_URL(id))
-            setMovieDetails(result)
-        }
-
-        getDetails()
+        dispatch(fetchMovieDescription(id))
     }, [id])
 
     return (
@@ -45,7 +37,6 @@ const MovieDescription = () => {
                     <p><span>Overview : </span>{movieDetails.overview}</p>
                     <div>
                         <Link className="trailerLink" to={`/${movieDetails?.id}/${movieDetails?.title}`}>Watch Movie Trailer</Link>
-                        <Link className="watchLink" to={`https://heremovieshd.com/en/movie/${movieDetails?.id}/${movieDetails?.title}`}>Watch Movie</Link>
                     </div>
                 </div>
                 <button onClick={() => {

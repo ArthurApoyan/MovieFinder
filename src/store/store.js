@@ -4,6 +4,9 @@ import {getPopularMoviesReducer} from "./slices/getPopularMovies/getPopularMovie
 import {getTopRatedMoviesReducer} from "./slices/getTopRatedMovies/getTopRatedMoviesSlice";
 import {getUpcomingMoviesReducer} from "./slices/getUpcomingMovies/getUpcomingMoviesSlice";
 import {getTrendingMoviesReducer} from "./slices/getTrendingMovies/getTrendingMoviesSlice";
+import {searchInputValueReducer} from "./slices/searchInputValue/searchInputValueSlice";
+import {searchResultReducer} from "./slices/searchResult/searchResultSlice";
+import {movieDescriptionReducer} from "./slices/movieDescription/MovieDescriptionSlice";
 
 export const store = configureStore({
     reducer:{
@@ -11,6 +14,9 @@ export const store = configureStore({
         popularMovies: getPopularMoviesReducer,
         topRatedMovies: getTopRatedMoviesReducer,
         upcomingMovies: getUpcomingMoviesReducer,
-        trendingMovies: getTrendingMoviesReducer
+        trendingMovies: getTrendingMoviesReducer,
+        searchInputValue: searchInputValueReducer,
+        searchResult: searchResultReducer,
+        movieDescription: movieDescriptionReducer
     }
 })

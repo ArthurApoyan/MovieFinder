@@ -1,26 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {useParams} from "react-router";
-import {movieRequest} from "../../api/hooks/hooks";
+import {useDispatch, useSelector} from "react-redux";
+import {selectSearchResult} from "../../store/slices/searchResult/searchResultSlice";
+import {fetchSearchResult} from "../../store/slices/searchResult/searchResultApi";
 import {POSTER_URL, SEARCH_URL} from "../../api/url/url";
 import Paginator from "../Paginator/Paginator";
 
 import "./searchResult.css"
 
+
 const SearchResult = () => {
 
-    const [searchResult, setSearchResult] = useState({})
+    const dispatch = useDispatch()
+    const searchResult = useSelector(selectSearchResult)
     const [page, setPage] = useState(1)
-    const {movieRequestGet} = movieRequest()
     const {search} = useParams()
 
     useEffect(() => {
-        const searchRequest = async  () => {
-            const result = await movieRequestGet(SEARCH_URL(search, page))
-            setSearchResult(result)
-        }
-
-        searchRequest()
+        dispatch(fetchSearchResult(SEARCH_URL(search, page)))
     }, [search, page])
 
     const filteredResults = searchResult?.results?.filter((item) => item.poster_path)

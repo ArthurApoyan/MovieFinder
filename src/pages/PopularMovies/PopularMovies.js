@@ -22,9 +22,9 @@ const PopularMovies = () => {
 
     return (
         <div className="popularMoviesPage">
-            <MoviesOnPage className="allMoviesOnPopularPage" allMovies={populars}/>
-
             {isLoading && <Loading/>}
+
+            <MoviesOnPage className="allMoviesOnPopularPage" allMovies={populars}/>
 
             <Paginator count={3} setPage={setPage}/>
         </div>

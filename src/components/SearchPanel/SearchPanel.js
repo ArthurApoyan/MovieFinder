@@ -1,31 +1,40 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {useNavigate} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    getInputValue,
+    resetInputValue,
+    selectSearchInputValue
+} from "../../store/slices/searchInputValue/searchInputValueSlice";
 
 import "./searchPanel.css";
 
+
 const SearchPanel = () => {
 
-    const [inputValue, setInputValue] = useState("")
+    const dispatch = useDispatch()
+    const inputValue = useSelector(selectSearchInputValue)
     const navigate = useNavigate();
-    const getInputValue = (e) => {
-        setInputValue(e.target.value)
-    }
 
     const handleClick = () => {
         navigate(`searchResult/${inputValue}`)
-        setInputValue("")
+        dispatch(resetInputValue())
     }
 
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             navigate(`searchResult/${inputValue}`)
-            setInputValue("")
+            dispatch(resetInputValue())
         }
     };
 
     return (
         <div className="searchPanel">
-            <input type="text" onChange={getInputValue} onKeyDown={handleKeyDown} placeholder="Movie Name" value={inputValue}/>
+            <input type="text"
+                   placeholder="Movie Name"
+                   value={inputValue}
+                   onChange={(e) => dispatch(getInputValue(e.target.value))}
+                   onKeyDown={handleKeyDown}/>
             <button onClick={handleClick}>Search</button>
         </div>
     );

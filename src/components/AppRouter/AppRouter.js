@@ -17,7 +17,6 @@ const AppRouter = () => {
                 <Route index element={<HomePage/>}/>
                 <Route path="/:id" element={<MovieDescription/>}/>
                 <Route path="/:id/:movieTitle" element={<VideoTrailer/>}/>
-                <Route path={"https://heremovieshd.com/en/movie/:id/:movieTitle"}/>
                 <Route path="popular" element={<PopularMovies/>}/>
                 <Route path="popular/:id" element={<MovieDescription/>}/>
                 <Route path="topRated" element={<TopRatedMovies/>}/>

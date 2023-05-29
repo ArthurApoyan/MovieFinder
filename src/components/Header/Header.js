@@ -6,7 +6,6 @@ import SearchPanel from "../SearchPanel/SearchPanel";
 
 import "./header.css";
 
-
 const Header = () => {
     return (
         <div className="header">

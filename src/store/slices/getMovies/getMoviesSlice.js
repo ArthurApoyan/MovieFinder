@@ -18,7 +18,6 @@ export const getMoviesSlice = createSlice({
             state.isLoading = true
         },
         [fetchAllMovies.fulfilled]:(state, {payload}) => {
-            console.log(payload)
             state.movies.popular = payload.popularMovies
             state.movies.topRated = payload.topRatedMovies
             state.movies.upcoming = payload.upcomingMovies

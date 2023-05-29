@@ -18,13 +18,13 @@ const VideoTrailer = () => {
         })
     }, [])
 
-    if(videos){return (
-        <div className="playerContainer">
-            <div className="playerDiv">
-                <YouTube iframeClassName="player" videoId={videos[0].id.videoId}/>
-            </div>
-        </div>
-    );}
+    return (
+        videos && <div className="playerContainer">
+                      <div className="playerDiv">
+                        <YouTube iframeClassName="player" videoId={videos[0].id.videoId}/>
+                      </div>
+                  </div>
+    );
 };
 
 export default VideoTrailer;

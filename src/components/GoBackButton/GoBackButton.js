@@ -7,13 +7,9 @@ const GoBackButton = () => {
 
     const navigate = useNavigate();
 
-    const goBack = () =>{
-        navigate(-1)
-    }
-
     return (
         <div>
-           <button className="goBack" onClick={goBack}>← Back</button>
+           <button className="goBack" onClick={() => navigate(-1)}>← Back</button>
         </div>
     );
 };

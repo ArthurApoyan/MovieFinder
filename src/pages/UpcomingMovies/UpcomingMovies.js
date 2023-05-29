@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {movieRequest} from "../../api/hooks/hooks";
-import {UPCOMING_MOVIE_URL} from "../../api/url/url";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchUpcomingMovies} from "../../store/slices/getUpcomingMovies/getUpcomingMoviesApi";
+import {selectUpcomingMovies} from "../../store/slices/getUpcomingMovies/getUpcomingMoviesSlice";
 
 import MoviesOnPage from "../../components/MoviesOnPage/MoviesOnPage";
 import Paginator from "../../components/Paginator/Paginator";
@@ -10,34 +11,18 @@ import "./upcomingMovies.css";
 
 const UpcomingMovies = () => {
 
-    const [upcoming, setUpcoming] = useState({})
+    const dispatch = useDispatch()
+    const {upcoming, isLoading} = useSelector(selectUpcomingMovies)
     const [page, setPage] = useState(1)
-    const [loading, setLoading] = useState(false)
-
-    const {movieRequestGet} = movieRequest()
 
     useEffect(() => {
+        dispatch(fetchUpcomingMovies(page))
         window.scrollTo(0, 0)
-    }, [page])
-
-    useEffect(() => {
-        const getUpcoming = async () => {
-
-            setLoading(true)
-
-            const result = await movieRequestGet(UPCOMING_MOVIE_URL + page)
-            setUpcoming(result)
-
-            setLoading(false)
-
-        }
-
-        getUpcoming()
     }, [page])
 
     return (
         <div className="upcomingMoviesPage">
-            {loading && <Loading/>}
+            {isLoading && <Loading/>}
 
             <MoviesOnPage className="allMoviesOnOtherPages" allMovies={upcoming}/>
 

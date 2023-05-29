@@ -5,7 +5,7 @@ export const TOP_RATED_MOVIE_URL = BASE_URL + "movie/top_rated?api_key=eeadb5c73
 
 export const UPCOMING_MOVIE_URL = BASE_URL + "movie/upcoming?api_key=eeadb5c738acc57bdc5851ce777d00bb&language=en-US&page=";
 
-export const TRENDING_MOVIES_URL = BASE_URL + "trending/movie/week?api_key=eeadb5c738acc57bdc5851ce777d00bb"
+export const TRENDING_MOVIES_URL = BASE_URL + "trending/movie/week?api_key=eeadb5c738acc57bdc5851ce777d00bb&language=en-US&page="
 
 export const POSTER_URL = "https://image.tmdb.org/t/p/original/";
 

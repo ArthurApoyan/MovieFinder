@@ -71,13 +71,23 @@
     justify-content: space-between;
 }
 .trailerLink{
+    width: 50%;
     color: orange;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 25px;
     border-radius: 10px;
-    padding: 0 5%;
 }
 .trailerLink:hover{
+    box-shadow: 0 0 5px 5px;
+}
+.watchLink{
+    width: 50%;
+    color: #d13512;
+    text-decoration: none;
+    font-size: 25px;
+    border-radius: 10px;
+}
+.watchLink:hover{
     box-shadow: 0 0 5px 5px;
 }
 @media (max-width: 1300px) {

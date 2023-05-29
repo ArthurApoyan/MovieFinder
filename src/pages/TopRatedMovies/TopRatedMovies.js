@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {movieRequest} from "../../api/hooks/hooks";
-import {TOP_RATED_MOVIE_URL} from "../../api/url/url";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchTopRatedMovies} from "../../store/slices/getTopRatedMovies/getTopRatedMoviesApi";
+import {selectTopRatedMovies} from "../../store/slices/getTopRatedMovies/getTopRatedMoviesSlice";
 
 import MoviesOnPage from "../../components/MoviesOnPage/MoviesOnPage";
 import Paginator from "../../components/Paginator/Paginator";
@@ -10,34 +11,18 @@ import "./topRatedMovies.css";
 
 const TopRatedMovies = () => {
 
-    const [topRated, setTopRated] = useState({})
-    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
+    const {topRated, isLoading} = useSelector(selectTopRatedMovies)
     const [page, setPage] = useState(1)
 
-    const {movieRequestGet} = movieRequest()
-
     useEffect(() => {
+        dispatch(fetchTopRatedMovies(page))
         window.scrollTo(0, 0)
     }, [page])
 
-    useEffect(() => {
-        const getLatest = async () => {
-
-            setLoading(true)
-
-            const result = await movieRequestGet(TOP_RATED_MOVIE_URL + page)
-            setTopRated(result)
-
-            setLoading(false)
-        }
-
-        getLatest()
-    }, [page])
-
-
     return (
         <div className="topRatedMoviesPage">
-            {loading && <Loading/>}
+            {isLoading && <Loading/>}
 
             <MoviesOnPage className="allMoviesOnOtherPages" allMovies={topRated}/>
 

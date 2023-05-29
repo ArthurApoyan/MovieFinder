@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Outlet} from "react-router";
-import {movieRequest} from "../../api/hooks/hooks";
-import {POPULAR_MOVIE_URL} from "../../api/url/url";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchPopularMovies} from "../../store/slices/getPopularMovies/getPopularMoviesApi";
+import {selectPopularMovies} from "../../store/slices/getPopularMovies/getPopularMoviesSlice";
 
 import Loading from "../../components/Loading/Loading";
 import MoviesOnPage from "../../components/MoviesOnPage/MoviesOnPage";
@@ -11,43 +11,20 @@ import "./popularMovies.css";
 
 const PopularMovies = () => {
 
-    const [popularMovies, setPopularMovies] = useState({});
-    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
+    const {populars, isLoading} = useSelector(selectPopularMovies)
     const [page, setPage] = useState(1)
 
-    const {movieRequestGet} = movieRequest()
-
-
-    const handleChange = (event, value) => {
-        setPage(value)
-    }
-
     useEffect(() => {
+        dispatch(fetchPopularMovies(page))
         window.scrollTo(0, 0)
     }, [page])
 
-    useEffect(() => {
-        const getPopular = async () => {
-            setLoading(true)
-
-            const result = await movieRequestGet((POPULAR_MOVIE_URL + page))
-            setPopularMovies(result)
-
-            setLoading(false)
-        }
-
-        getPopular()
-
-    }, [page])
-
-
     return (
         <div className="popularMoviesPage">
-            <div style={{marginTop: "-5%"}}><Outlet/></div>
+            <MoviesOnPage className="allMoviesOnPopularPage" allMovies={populars}/>
 
-            <MoviesOnPage className= "allMoviesOnPopularPage" allMovies={popularMovies}/>
-
-            {loading && <Loading/>}
+            {isLoading && <Loading/>}
 
             <Paginator count={3} setPage={setPage}/>
         </div>

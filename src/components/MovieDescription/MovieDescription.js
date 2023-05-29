@@ -43,8 +43,10 @@ const MovieDescription = () => {
                                                              to={movieDetails?.homepage}>{movieDetails?.homepage}</Link>
                     </h4>
                     <p><span>Overview : </span>{movieDetails.overview}</p>
-                    <Link className="trailerLink" to={`/${movieDetails?.id}/${movieDetails?.title}`}>Watch Movie
-                        Trailer</Link>
+                    <div>
+                        <Link className="trailerLink" to={`/${movieDetails?.id}/${movieDetails?.title}`}>Watch Movie Trailer</Link>
+                        <Link className="watchLink" to={`https://heremovieshd.com/en/movie/${movieDetails?.id}/${movieDetails?.title}`}>Watch Movie</Link>
+                    </div>
                 </div>
                 <button onClick={() => {
                     navigate(-1)

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {movieRequest} from "../../api/hooks/hooks";
-import {TOP_RATED_MOVIE_URL, TRENDING_MOVIES_URL} from "../../api/url/url";
+import {useDispatch, useSelector} from "react-redux";
+import {selectTrendingMovies} from "../../store/slices/getTrendingMovies/getTrendingMoviesSlice";
+import {fetchTrendingMovies} from "../../store/slices/getTrendingMovies/getTrendingMoviesApi";
 
 import MoviesOnPage from "../../components/MoviesOnPage/MoviesOnPage";
 import Paginator from "../../components/Paginator/Paginator";
@@ -10,34 +11,18 @@ import "./trendingMovies.css";
 
 const TrendingMovies = () => {
 
-    const [trending, setTrending] = useState({})
-    const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
+    const {trending, isLoading} = useSelector(selectTrendingMovies)
     const [page, setPage] = useState(1)
 
-    const {movieRequestGet} = movieRequest()
-
     useEffect(() => {
+        dispatch(fetchTrendingMovies(page))
         window.scrollTo(0, 0)
     }, [page])
 
-    useEffect(() => {
-        const getTrending = async () => {
-
-            setLoading(true)
-
-            const result = await movieRequestGet(TRENDING_MOVIES_URL + page)
-            setTrending(result)
-
-            setLoading(false)
-        }
-
-        getTrending()
-    }, [page])
-
-
     return (
         <div className="trendingMoviesPage">
-            {loading && <Loading/>}
+            {isLoading && <Loading/>}
 
             <MoviesOnPage className="allMoviesOnOtherPages" allMovies={trending}/>
 

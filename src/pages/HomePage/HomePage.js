@@ -1,62 +1,31 @@
-import React, {useEffect, useState} from 'react';
-import {movieRequest} from "../../api/hooks/hooks";
-import {POPULAR_MOVIE_URL, TOP_RATED_MOVIE_URL, TRENDING_MOVIES_URL, UPCOMING_MOVIE_URL} from "../../api/url/url";
+import React, {useEffect} from 'react';
 
+import {fetchAllMovies} from "../../store/slices/getMovies/getMoviesApi";
+import {useDispatch, useSelector} from "react-redux";
+import {selectAllMovies} from "../../store/slices/getMovies/getMoviesSlice";
 import HomePageSection from "../../components/HomePageSection/HomePageSection";
 import Loading from "../../components/Loading/Loading";
 
 import "./homePage.css";
 
+
 const HomePage = () => {
 
-    const [homePageContent, setHomePageContent] = useState({
-        popular: {},
-        topRated: {},
-        upcoming: {},
-        trending: {}
-    })
-    const [loading, setLoading] = useState(false)
-    const {movieRequestGet} = movieRequest()
-
-    const getPopular = async () => {
-
-        setLoading(true)
-
-        const result = await movieRequestGet(POPULAR_MOVIE_URL + 1)
-        setHomePageContent((prevState) => ({...prevState, popular: result}))
-
-        setLoading(false)
-    }
-
-    const getTopRated = async () => {
-        const result = await movieRequestGet(TOP_RATED_MOVIE_URL + 1)
-        setHomePageContent((prevState) => ({...prevState, topRated: result}))
-    }
-
-    const getUpcoming = async () => {
-        const result = await movieRequestGet(UPCOMING_MOVIE_URL + 1)
-        setHomePageContent((prevState) => ({...prevState, upcoming: result}))
-    }
-
-    const getTrending = async () => {
-        const result = await movieRequestGet(TRENDING_MOVIES_URL + 1)
-        setHomePageContent((prevState) => ({...prevState, trending: result}))
-    }
+    const dispatch = useDispatch()
+    const {movies, isLoading} = useSelector(selectAllMovies)
 
     useEffect(() => {
-        getPopular()
-        getTopRated()
-        getUpcoming()
-        getTrending()
+        dispatch(fetchAllMovies())
     }, [])
+
 
     return (
         <div className="homePage">
-            {loading && <Loading/>}
-            <HomePageSection title="Popular Movies" moviesCategory={homePageContent.popular} link="/popular"/>
-            <HomePageSection title="Top Rated Movies" moviesCategory={homePageContent.topRated} link="/topRated"/>
-            <HomePageSection title="Upcoming Movies" moviesCategory={homePageContent.upcoming} link="/upcoming"/>
-            <HomePageSection title="Trending Movies" moviesCategory={homePageContent.upcoming} link="/upcoming"/>
+            {isLoading && <Loading/>}
+            <HomePageSection title="Popular Movies" moviesCategory={movies.popular} link="/popular"/>
+            <HomePageSection title="Top Rated Movies" moviesCategory={movies.topRated} link="/topRated"/>
+            <HomePageSection title="Upcoming Movies" moviesCategory={movies.upcoming} link="/upcoming"/>
+            <HomePageSection title="Trending Movies" moviesCategory={movies.trending} link="/upcoming"/>
         </div>
     );
 };
